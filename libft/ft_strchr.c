@@ -13,7 +13,7 @@
 char	*ft_strchr(const char *str, int c)
 {
 	unsigned char	uc;
-	unsigned int	i;
+	size_t			i;
 
 	uc = (unsigned char)c;
 	i = 0;
