@@ -1,10 +1,16 @@
 /*
-	strlcat() catenates the input string into a destination string.
-	If the destination buffer, limited by its size, isn't large enough
-	to hold the copy, the resulting string is truncated (but it is guaranteed
-	to be null-terminated).
-	
-	It returns the length of the total string they tried to create.
+	strlcat() — size-bounded string concatenation.
+	Designed to be safer, more consistent, and less error prone replacements
+	for strncat(3).
+
+	It returns the length of the total string it tried to create (the
+	initial length of dst plus the length of src. While this may seem
+	somewhat confusing, it was done to make truncation detection simple).
+
+	if strlcat() traverses size characters without finding a NUL,
+	the length of the string is considered to be size and the 
+	destination string will not be NUL-terminated
+	(since there was no space for the NUL).
  */
 
 #include "libft.h"

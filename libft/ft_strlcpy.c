@@ -1,10 +1,11 @@
 /*
-	strlcpy() copies the input string into a destination string.
-	If the destination buffer, limited by its size, isn't large enough
-	to hold the copy, the resulting string is truncated (but it is guaranteed
-	to be null-terminated).
-	
-	It returns the length of the total string they tried to create.
+	strlcpy() — size-bounded string copying.
+	Designed to be safer, more consistent, and less error prone replacements
+	for strncpy(3).
+
+	It returns the length of the total string it tried to create (the
+	length of src. While this may seem somewhat confusing, it was done
+	to make truncation detection simple).
  */
 
 #include "libft.h"
