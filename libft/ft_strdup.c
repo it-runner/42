@@ -10,18 +10,18 @@ char	*ft_strdup(const char *s)
 {
 	char	*ptr;
 	int		len;
-	int		n;
+	int		i;
 
 	len = ft_strlen(s);
-	n = 0;
 	ptr = malloc(len + 1);
+	i = 0;
 	if (ptr == NULL)
 		return (NULL);
-	while (s[n])
+	while (s[i])
 	{
-		ptr[n] = s[n];
-		n++;
+		ptr[i] = s[i];
+		i++;
 	}
-	ptr[n] = '\0';
+	ptr[i] = '\0';
 	return (ptr);
 }
