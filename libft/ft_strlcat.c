@@ -22,7 +22,7 @@ size_t	ft_strlcat(char *dst, const char *src, size_t size)
 	size_t	dest_len;
 	size_t	total_len;
 
-	if (!dst || !src)
+	if (!dst && size == 0)
 		return (0);
 	src_len = ft_strlen(src);
 	dest_len = ft_strlen(dst);
