@@ -1,5 +1,5 @@
 /*
-	The memmove() function copies n bytes from memory area src
+	The  memmove() function copies n bytes from memory area src
 	to memory area dest. The memory areas may overlap: copying takes place
 	as though the bytes in src are first copied into a temporary array
 	that does not overlap src or dest, and the bytes are then copied
@@ -19,7 +19,7 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 	i = 0;
 	if (dest > src)
 	{
-		while (i < n)
+		while (n)
 		{
 			((unsigned char *)dest)[n - 1] = ((unsigned char *)src)[n - 1];
 			n--;
