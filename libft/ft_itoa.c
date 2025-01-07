@@ -28,11 +28,6 @@ static long	number_len(long n)
 	return (size);
 }
 
-static int	is_negative(int n)
-{
-	return (n < 0);
-}
-
 char	*ft_itoa(int n)
 {
 	long	n_long;
@@ -54,7 +49,7 @@ char	*ft_itoa(int n)
 		len--;
 		n_long /= 10;
 	}
-	if (is_negative(n) == 1)
+	if (n < 0)
 		value[0] = '-';
 	return (value);
 }
