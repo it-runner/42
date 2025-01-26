@@ -20,7 +20,7 @@ static long	number_len(long n)
 		size++;
 		n = -n;
 	}
-	while (n != 0)
+	while (n)
 	{
 		n /= 10;
 		size++;
@@ -32,24 +32,24 @@ char	*ft_itoa(int n)
 {
 	long	n_long;
 	long	len;
-	char	*value;
+	char	*ptr;
 
 	n_long = n;
 	len = number_len(n_long);
-	value = malloc(len + 1);
-	if (!value)
+	ptr = malloc(len + 1);
+	if (!ptr)
 		return (NULL);
-	value[len] = '\0';
+	ptr[len] = '\0';
 	len--;
 	if (n_long < 0)
 		n_long = -n_long;
 	while (len >= 0)
 	{
-		value[len] = (n_long % 10) + '0';
+		ptr[len] = (n_long % 10) + '0';
 		len--;
 		n_long /= 10;
 	}
 	if (n < 0)
-		value[0] = '-';
-	return (value);
+		ptr[0] = '-';
+	return (ptr);
 }
