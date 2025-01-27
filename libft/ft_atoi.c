@@ -5,6 +5,8 @@
 	It returns the converted value or 0 on error.
 */
 
+#include "libft.h"
+
 int	ft_atoi(const char *str)
 {
 	size_t	i;
