@@ -8,15 +8,15 @@
 
 char	*ft_strdup(const char *s)
 {
-	char	*ptr;
-	size_t	len;
 	size_t	i;
+	size_t	len;
+	char	*ptr;
 
 	if (!s)
 		return (NULL);
 	len = ft_strlen(s);
 	ptr = malloc(len + 1);
-	if (ptr == NULL)
+	if (!ptr)
 		return (NULL);
 	i = 0;
 	while (s[i])
