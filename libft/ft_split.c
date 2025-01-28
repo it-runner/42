@@ -6,109 +6,68 @@
 	It returns the array of new strings resulting from the split or NULL
 	if the allocation fails.
 */
-
 #include "libft.h"
 
-static int		count_words(char const *s, char c);
-static char		*add_word(char *word, char const *s, size_t i, size_t word_len);
-static char		**split_words(char const *s, char c, char **ptr, size_t words);
-static void		mem_free(char **strs, size_t count);
-
-char	**ft_split(char const *s, char c)
+static int	count_words(const char *str, char c)
 {
-	char	**ptr;
-	size_t	words;
+	int	i;
+	int	trigger;
+	int	counter;
 
-	if (!s || !*s)
-	{
-		ptr = malloc(sizeof(char *));
-		if (ptr == NULL)
-			return (NULL);
-		ptr[0] = NULL;
-		return (ptr);
-	}
-	words = count_words(s, c);
-	ptr = malloc((words + 1) * sizeof(char *));
-	if (ptr == NULL)
-		return (NULL);
-	split_words(s, c, ptr, words);
-	ptr[words] = NULL;
-	return (ptr);
-}
-
-static int	count_words(char const *s, char c)
-{
-	size_t	i;
-	int		counter;
-
-	counter = 0;
 	i = 0;
-	while (s[i])
+	trigger = 1;
+	counter = 0;
+	while (str[i])
 	{
-		if (s[i] == c)
-			i++;
-		else
+		if (str[i] != c && trigger)
 		{
+			trigger = 0;
 			counter++;
-			while (s[i] && s[i] != c)
-				i++;
 		}
+		else if (str[i] == c)
+			trigger = 1;
+		i++;
 	}
 	return (counter);
 }
 
-static char	*add_word(char *word, char const *s, size_t i, size_t word_len)
+static char	*duplicate_word(const char *str, int start, int end)
 {
-	size_t	k;
+	char	*word;
+	int		i;
 
-	k = 0;
-	while (k < word_len)
-	{
-		word[k] = s[i + k];
-		k++;
-	}
-	word[k] = '\0';
+	i = 0;
+	word = malloc(end - start + 1);
+	while (start < end)
+		word[i++] = str[start++];
+	word[i] = '\0';
 	return (word);
 }
 
-static char	**split_words(char const *s, char c, char **ptr, size_t words)
+char	**ft_split(char const *s, char c)
 {
 	size_t	i;
-	size_t	word_no;
-	size_t	word_len;
+	size_t	j;
+	int		index;
+	char	**split;
 
+	split = malloc((count_words(s, c) + 1) * sizeof(char *));
+	if (!s || !split)
+		return (0);
 	i = 0;
-	word_no = 0;
-	while (word_no < words)
+	j = 0;
+	index = -1;
+	while (i <= ft_strlen(s))
 	{
-		word_len = 0;
-		while (s[i] && s[i] == c)
-			i++;
-		while (s[i + word_len] && s[i + word_len] != c)
-			word_len++;
-		ptr[word_no] = malloc(word_len + 1);
-		if (ptr[word_no] == NULL)
+		if (s[i] != c && index < 0)
+			index = i;
+		else if ((s[i] == c || i == ft_strlen(s)) && index >= 0)
 		{
-			mem_free(ptr, word_no);
-			return (NULL);
+			split[j++] = duplicate_word(s, index, i);
+			index = -1;
 		}
-		add_word(ptr[word_no], s, i, word_len);
-		i += word_len;
-		word_no++;
-	}
-	ptr[word_no] = NULL;
-	return (ptr);
-}
-
-static void	mem_free(char **strs, size_t count)
-{
-	size_t	i;
-
-	i = 0;
-	while (i < count)
-	{
-		free(strs[i]);
 		i++;
 	}
-	free(strs);
+	split[j] = 0;
+	return (split);
 }
