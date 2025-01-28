@@ -9,8 +9,8 @@
 
 #include "libft.h"
 
-static int	count_words(const char *str, char c);
-static char	*duplicate_word(const char *str, int start, int end);
+static size_t	count_words(const char *str, char c);
+static char		*duplicate_word(const char *str, int start, int end);
 
 char	**ft_split(char const *s, char c)
 {
@@ -21,7 +21,7 @@ char	**ft_split(char const *s, char c)
 
 	split = malloc((count_words(s, c) + 1) * sizeof(char *));
 	if (!s || !split)
-		return (0);
+		return (NULL);
 	i = 0;
 	j = 0;
 	index = -1;
@@ -40,11 +40,11 @@ char	**ft_split(char const *s, char c)
 	return (split);
 }
 
-static int	count_words(const char *str, char c)
+static size_t	count_words(const char *str, char c)
 {
-	int	i;
-	int	trigger;
-	int	counter;
+	int		i;
+	int		trigger;
+	size_t	counter;
 
 	i = 0;
 	trigger = 1;
@@ -70,6 +70,8 @@ static char	*duplicate_word(const char *str, int start, int end)
 
 	i = 0;
 	word = malloc(end - start + 1);
+	if (!word)
+		return (NULL);
 	while (start < end)
 		word[i++] = str[start++];
 	word[i] = '\0';
