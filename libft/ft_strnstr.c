@@ -1,5 +1,8 @@
 /* 
 	strnstr() locates a substring (little) in a string (big).
+	If little is an empty string, big is returned; if little occurs nowhere
+	in big, NULL is returned; otherwise a pointer to the first character 
+	of the first occurrence of little is returned.
 */
 
 #include "libft.h"
