@@ -1,0 +1,1 @@
+My history implementation in Minishell project, based on readline library, but without using history_list() function.
