@@ -3,6 +3,12 @@
 // ====================================================================
 // Orthodox Canonical Form elements:
 // ====================================================================
+ClapTrap::ClapTrap()																// default constructor
+	: name("ClappyUnnamed"), hitPoints(10), energyPoints(10), attackDamage(0)
+{
+	std::cout << "ClapTrap Default Constructor for " << this->name << " called\n";
+}
+
 ClapTrap::ClapTrap(std::string name)												// constructor
 	: name(name), hitPoints(10), energyPoints(10), attackDamage(0)					// initialization list
 {
