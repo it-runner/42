@@ -3,6 +3,7 @@
 // ====================================================================
 // Orthodox Canonical Form elements:
 // ====================================================================
+
 ClapTrap::ClapTrap()																// default constructor
 	: name("ClappyUnnamed"), hitPoints(10), energyPoints(10), attackDamage(0)
 {

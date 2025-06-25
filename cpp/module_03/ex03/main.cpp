@@ -10,7 +10,7 @@ int main()
 	std::cout << "\n\033[38;5;214m=== Testing ClapTrap ===\033[0m\n\n";
 	{
 		std::cout << "\033[34mConstructor\033[0m\n";
-		ClapTrap a;
+		ClapTrap a("ClapTop");
 		ClapTrap b("ClapBot");
 
 		std::cout << "\033[34mTest\033[0m\n";

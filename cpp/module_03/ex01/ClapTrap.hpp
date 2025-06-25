@@ -12,10 +12,10 @@ class ClapTrap {
 		unsigned int	energyPoints;					// attacking and repairing cost 1 energy point each
 		unsigned int	attackDamage;					// when ClapTrap attacks, it causes its target to lose <attack damage> hit points
 		virtual unsigned int getMaxHitPoints();			// maximum hit points
+		ClapTrap();										// default constructor
 
 	public:
 		// Orthodox Canonical Form elements:
-		ClapTrap();										// default constructor
 		explicit ClapTrap(std::string Name);			// constructor
 		ClapTrap(const ClapTrap &other);				// copy constructor
 		ClapTrap &operator=(const ClapTrap &other);		// copy assignment operator
