@@ -84,9 +84,9 @@ Time to process a range of 9 elements with std::list:           0.025000 ms
 
 The Ford-Johnson algorithm, also known as the merge-insertion sort, is an efficient comparison sort algorithm that minimizes the number of comparisons required to sort a list. It works by:
 
-1.  **Pairing and Sorting**: Dividing the input into pairs, sorting each pair, and then recursively sorting these pairs based on their larger elements.
-2.  **Main Chain and Pending Elements: Constructing a main sorted chain and managing a set of pending elements to be inserted.
-3.  **Jacobsthal Insertion Sequence: Utilizing the Jacobsthal sequence to determine the optimal order for inserting pending elements into the main chain, minimizing comparisons. This strategy helps to minimize comparisons by inserting elements from their sorted positions, allowing for more efficient binary searches and fewer comparisons overall.
+**1.  Pairing and Sorting**: Dividing the input into pairs, sorting each pair, and then recursively sorting these pairs based on their larger elements.
+**2.  Main Chain and Pending Elements: Constructing a main sorted chain and managing a set of pending elements to be inserted.
+**3.  Jacobsthal Insertion Sequence: Utilizing the Jacobsthal sequence to determine the optimal order for inserting pending elements into the main chain, minimizing comparisons. This strategy helps to minimize comparisons by inserting elements from their sorted positions, allowing for more efficient binary searches and fewer comparisons overall.
 
 ### Performance Comparison: `std::list` vs `std::vector`
 
