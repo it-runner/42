@@ -1,4 +1,4 @@
-# 🚀 PmergeMe - Ford-Johnson Merge-Insertion Sort Algorithm 🚀
+# 🚀 PmergeMe - Ford-Johnson Merge-Insertion Sort Algorithm
 
 A C++ program implementing the **Ford-Johnson Merge-Insertion Sort algorithm** for sorting sequences of positive integers. This project demonstrates the algorithm's application to both `std::vector` and `std::list` containers, providing insights into their performance characteristics for different dataset sizes.
 The project was carried out as part of a series of projects at 42Warsaw in compliance with the C++98 standard.
