@@ -1,6 +1,6 @@
 /*
 	PmergeMe - Ford-Johnson Merge-Insertion Sort Algorithm for std::vector and std::list
-	See detailed algorithm explanation at the bottom of this file.
+	See detailed algorithm explanation in info.md.
 */
 
 #include "PmergeMe.hpp"
