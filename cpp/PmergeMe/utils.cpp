@@ -158,7 +158,7 @@ std::clock_t time_list_sort(int *array, int array_size) {
 
 // format and display container processing time with aligned output
 void printTime(std::string containerType, std::clock_t time, int elements) {
-	double clock_per_us = static_cast<double>(CLOCKS_PER_SEC) / 1000000; // microseconds
+	double clock_per_us = static_cast<double>(CLOCKS_PER_SEC) / 1000; // milliseconds
 	double timeInUs = time / clock_per_us;
 
 	std::ostringstream prefix;
@@ -167,7 +167,7 @@ void printTime(std::string containerType, std::clock_t time, int elements) {
 	
 	std::cout << std::left << std::setw(60) << prefix.str()
 			<< std::right << std::setw(12) << std::fixed << std::setprecision(6) 
-			<< timeInUs << " us" << std::endl;
+			<< timeInUs << " ms" << std::endl;
 }
 
 // COMPARISON
