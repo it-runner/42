@@ -58,10 +58,10 @@ std::string intListToString(std::list< std::pair<int, int> > &list) {
 int *createArrayFromArgs(int array_size, char **av) {
 	int *array = new int[array_size];
 	for (int i = 0; i < array_size; ++i)
-        array[i] = -1;
+		array[i] = -1;
 	try {
 		for (int i = 0; av[i + 1] && i < array_size; ++i)
-            array[i] = convertStringToInt(av[i + 1], array, array_size);
+			array[i] = convertStringToInt(av[i + 1], array, array_size);
 	}
 	catch (...) {
 		delete[] array;
@@ -121,15 +121,18 @@ bool isNumberInArray(const int * array, const int array_size, const int nb) {
 // measure and display the time taken to sort an array
 std::clock_t time_vector_sort(int *array, int array_size) {
 	std::cout << "\n________ STD::VECTOR - insertion-merge sort ________"  << std::endl;
+	
+	// Display unsorted vector first
+	std::vector<int> beforeVec(array, array + array_size);
+	std::cout << "Unsorted   (size " << beforeVec.size() << "): " << intVectorToString(beforeVec) << std::endl;
+	
 	PmergeMe vectorSorter(array, array_size, VECTOR);
 	std::clock_t start = std::clock();
 	vectorSorter.sort();
 	std::clock_t vectorTime = std::clock() - start;
 
 	std::vector<int> &sortedVec = vectorSorter.getSortedVector();
-	std::stringstream ss;
-	ss << "Sorted     (size " << sortedVec.size() << "): " << intVectorToString(sortedVec);
-	printLine(ss.str());
+	std::cout << "Sorted     (size " << sortedVec.size() << "): " << intVectorToString(sortedVec) << std::endl;
 
 	return vectorTime;
 }
@@ -137,23 +140,26 @@ std::clock_t time_vector_sort(int *array, int array_size) {
 // measure and display the time taken to sort an array
 std::clock_t time_list_sort(int *array, int array_size) {
 	std::cout << std::endl << "________ STD::LIST - insertion-merge sort ________"  << std::endl;
+	
+	// Display unsorted list first
+	std::list<int> beforeList(array, array + array_size);
+	std::cout << "Unsorted   (size " << beforeList.size() << "): " << intListToString(beforeList) << std::endl;
+	
 	PmergeMe listSorter(array, array_size, LIST);
 	std::clock_t start = std::clock();
 	listSorter.sort();
 	std::clock_t listTime = std::clock() - start;
 
 	std::list<int> &sortedList = listSorter.getSortedList();
-	std::stringstream ss;
-	ss << "Sorted     (size " << sortedList.size() << "): " << intListToString(sortedList);
-	printLine(ss.str());
+	std::cout << "Sorted     (size " << sortedList.size() << "): " << intListToString(sortedList) << std::endl;
 
 	return listTime;
 }
 
 // format and display container processing time with aligned output
 void printTime(std::string containerType, std::clock_t time, int elements) {
-	double clock_per_ms = static_cast<double>(CLOCKS_PER_SEC) / 1000;
-	double timeInMs = time / clock_per_ms;
+	double clock_per_us = static_cast<double>(CLOCKS_PER_SEC) / 1000000; // microseconds
+	double timeInUs = time / clock_per_us;
 
 	std::ostringstream prefix;
 	prefix << "Time to process a range of " << elements 
@@ -161,24 +167,31 @@ void printTime(std::string containerType, std::clock_t time, int elements) {
 	
 	std::cout << std::left << std::setw(60) << prefix.str()
 			<< std::right << std::setw(12) << std::fixed << std::setprecision(6) 
-			<< timeInMs << " ms" << std::endl;
+			<< timeInUs << " us" << std::endl;
 }
 
 // COMPARISON
 
 // compare sorting performance between vector and list
 void compareSort(int ac, char **av) {
-	int array_size = ac - 1;
-	int *array = createArrayFromArgs(array_size, av);
-	
-	std::clock_t vectorTime = time_vector_sort(array, array_size);
-	std::clock_t listTime = time_list_sort(array, array_size);
-	
-	std::cout << std::endl << "________ TIME: ________"  << std::endl;
-	printTime("vector", vectorTime, ac - 1);
-	printTime("list", listTime, ac - 1);
-	std::cout << std::endl;
-
+	int *array = NULL;
+	try {
+		int array_size = ac - 1;
+		array = createArrayFromArgs(array_size, av);
+		
+		// Sort and measure time for both containers
+		std::clock_t vectorTime = time_vector_sort(array, array_size);
+		std::clock_t listTime = time_list_sort(array, array_size);
+		
+		std::cout << std::endl << "________ TIME: ________"  << std::endl;
+		printTime("vector", vectorTime, ac - 1);
+		printTime("list", listTime, ac - 1);
+		std::cout << std::endl;
+	}
+	catch (...) {
+		delete[] array;
+		throw;
+	}
 	delete[] array;
 }
 

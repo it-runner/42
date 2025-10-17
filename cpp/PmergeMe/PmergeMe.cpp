@@ -52,7 +52,6 @@
 
 	// vector sorting using Ford-Johnson algorithm
 	void PmergeMe::_sortVector() {
-		_printVector(*_unsortedVector, "Unsorted  ");
 		if (_isVectorSorted()) {
 			std::vector<int>::iterator it = _unsortedVector->begin();
 			for ( ; it != _unsortedVector->end(); ++it)
@@ -294,7 +293,6 @@
 
 	// list sorting using Ford-Johnson algorithm
 	void PmergeMe::_sortList() {
-		_printList(*_unsortedList, "Unsorted  ");
 		if (_isListSorted()) {
 			std::list<int>::iterator it = _unsortedList->begin();
 			for (; it != _unsortedList->end(); ++it)
